@@ -96,28 +96,28 @@ class CSE_Tests: XCTestCase {
         }
     }
     
-    func testPredictCardTypeBancontact() {
-        let predictCardType = CSE.predictCardType(cardNumberBeginning: "6060")
-        assert(predictCardType == CardBrand.Bancontact)
+    func testpredictCardBrandBancontact() {
+        let predictCardBrand = CSE.predictCardBrand(cardNumberBeginning: "6060")
+        assert(predictCardBrand == CardBrand.Bancontact)
     }
     
-    func testPredictCardTypeMaestro() {
-        let predictCardType = CSE.predictCardType(cardNumberBeginning: "5020")
-        assert(predictCardType == CardBrand.Maestro)
+    func testpredictCardBrandMaestro() {
+        let predictCardBrand = CSE.predictCardBrand(cardNumberBeginning: "5020")
+        assert(predictCardBrand == CardBrand.Maestro)
     }
     
-    func testPredictCardTypeAmex() {
-        let predictCardType = CSE.predictCardType(cardNumberBeginning: "333")
-        assert(predictCardType == CardBrand.Amex)
+    func testpredictCardBrandAmex() {
+        let predictCardBrand = CSE.predictCardBrand(cardNumberBeginning: "333")
+        assert(predictCardBrand == CardBrand.Amex)
     }
     
-    func testPredictCardTypeVisa() {
-        let predictCardType = CSE.predictCardType(cardNumberBeginning: "4444")
-        assert(predictCardType == CardBrand.Visa)
+    func testpredictCardBrandVisa() {
+        let predictCardBrand = CSE.predictCardBrand(cardNumberBeginning: "4444")
+        assert(predictCardBrand == CardBrand.Visa)
     }
     
-    func testPredictCardTypeMastercard() {
-        let predictCardType = CSE.predictCardType(cardNumberBeginning: "5555")
-        assert(predictCardType == CardBrand.Mastercard)
+    func testpredictCardBrandMastercard() {
+        let predictCardBrand = CSE.predictCardBrand(cardNumberBeginning: "5555")
+        assert(predictCardBrand == CardBrand.Mastercard)
     }
 }

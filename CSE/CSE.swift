@@ -241,9 +241,9 @@ public enum CSE {
     }
     
     /**
-        Returns the best guess for the card brand. In most cases tif he number of digits entered is below 4 CardType Unknown is returned
+        Returns the best guess for the card brand. In most cases if the number of digits entered is below 4, the CardBrand Unknown is returned.
      */
-    public static func predictCardType(cardNumberBeginning: String) -> CardBrand {
+    public static func predictCardBrand(cardNumberBeginning: String) -> CardBrand {
         if (cardNumberBeginning.range(of: #"^3"#, options: .regularExpression) != nil) {
             return CardBrand.Amex;
         }
