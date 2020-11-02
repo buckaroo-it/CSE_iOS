@@ -88,7 +88,7 @@ class CSE_Tests: XCTestCase {
     
     func testEncryptCardDataResult() {
         do {
-            let encryptCardDataResult = try CSE.encryptCardData(cardNumber: "5386860000000000", year: "2020", month: "12", cvc: "123", cardholder: "DE GROOT")
+            let encryptCardDataResult = try CSE.encrypt(cardNumber: "5386860000000000", year: "2020", month: "12", cvc: "123", cardholder: "DE GROOT")
             print("encryptCardData: \(encryptCardDataResult)")
         } catch {
             print("encryptError: \(error)")
@@ -96,27 +96,37 @@ class CSE_Tests: XCTestCase {
         }
     }
     
-    func testpredictCardBrandBancontact() {
+    func testEncryptSecurityCodeResult() {
+        do {
+            let encryptSecurityCodeResult = try CSE.encrypt(cvc: "123")
+            print("encryptCardData: \(encryptSecurityCodeResult)")
+        } catch {
+            print("encryptError: \(error)")
+            assertionFailure(error.localizedDescription)
+        }
+    }
+    
+    func testPredictCardBrandBancontact() {
         let predictCardBrand = CSE.predictCardBrand(cardNumberBeginning: "6060")
         assert(predictCardBrand == CardBrand.Bancontact)
     }
     
-    func testpredictCardBrandMaestro() {
+    func testPredictCardBrandMaestro() {
         let predictCardBrand = CSE.predictCardBrand(cardNumberBeginning: "5020")
         assert(predictCardBrand == CardBrand.Maestro)
     }
     
-    func testpredictCardBrandAmex() {
+    func testPredictCardBrandAmex() {
         let predictCardBrand = CSE.predictCardBrand(cardNumberBeginning: "333")
         assert(predictCardBrand == CardBrand.Amex)
     }
     
-    func testpredictCardBrandVisa() {
+    func testPredictCardBrandVisa() {
         let predictCardBrand = CSE.predictCardBrand(cardNumberBeginning: "4444")
         assert(predictCardBrand == CardBrand.Visa)
     }
     
-    func testpredictCardBrandMastercard() {
+    func testPredictCardBrandMastercard() {
         let predictCardBrand = CSE.predictCardBrand(cardNumberBeginning: "5555")
         assert(predictCardBrand == CardBrand.Mastercard)
     }

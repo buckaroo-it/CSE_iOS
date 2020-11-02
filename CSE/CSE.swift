@@ -64,13 +64,9 @@ public enum CSE {
         return publicKey!
     }
     
-    /**
-     Encrypts the data using RSA public key encryption.
-     :returns: A base64 encoded value that can be used to initiate a transaction using the Buckaroo Payment Gateway
-     */
-    public static func encryptCardData(cardNumber: String, year: String, month: String, cvc: String, cardholder: String) throws -> String {
+    private static func encryptString(_ encryptableString: String) throws -> String {
+        let data = encryptableString.data(using: String.Encoding.utf8)!
         let key = GetKey()
-        let data = "\(cardNumber),\(year),\(month),\(cvc),\(cardholder)".data(using: String.Encoding.utf8)!
         var error: Unmanaged<CFError>?
         let encrypted = SecKeyCreateEncryptedData(key, SecKeyAlgorithm.rsaEncryptionOAEPSHA1, data as CFData, &error )!
         
@@ -79,6 +75,24 @@ public enum CSE {
         }
         
         return "001" + (encrypted as Data).base64EncodedString()
+    }
+    
+    /**
+     Encrypts the card data using RSA public key encryption.
+     :returns: A base64 encoded value that can be used to initiate a transaction using the Buckaroo Payment Gateway
+     */
+    public static func encrypt(cardNumber: String, year: String, month: String, cvc: String, cardholder: String) throws -> String {
+        let encryptableString = "\(cardNumber),\(year),\(month),\(cvc),\(cardholder)"
+        return try encryptString(encryptableString)
+    }
+    
+    /**
+     Encrypts the security code using RSA public key encryption.
+     :returns: A base64 encoded value that can be used to initiate a transaction using the Buckaroo Payment Gateway
+     */
+    public static func encrypt(cvc: String) throws -> String {
+        let encryptableString = cvc
+        return try encryptString(encryptableString)
     }
 
     /**
