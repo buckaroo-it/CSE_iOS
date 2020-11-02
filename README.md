@@ -8,7 +8,7 @@ The Buckaroo CSE SDK for iOS is written in Swift and is compatible with iOS devi
 See below an example of how to use this SDK to encrypt some dummy card credentials.
 ```swift
 do {
-	let encryptCardDataResult = try CSE.encryptCardData(cardNumber: "5386860000000000", year: "2020", month: "12", cvc: "123", cardholder: "A DE GROOT")
+	let encryptCardDataResult = try CSE.encrypt(cardNumber: "5386860000000000", year: "2020", month: "12", cvc: "123", cardholder: "A DE GROOT")
 	print("encryptedCardData: \(encryptCardDataResult)")
 } catch {
 	print("encryptError: \(error)")
